@@ -9,4 +9,7 @@ Zipkin is a distributed tracing system.
 
 ```
 ZIPKIN_SERVICE_HOST - port starting service
+RABBITMQ_HOST - rabbit url
+RABBITMQ_USERNAME - rabbit username
+RABBITMQ_PASSWORD - rabbit password
 ```

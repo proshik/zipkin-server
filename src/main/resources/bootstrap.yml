@@ -1,6 +1,12 @@
 server:
   port: ${ZIPKIN_SERVICE_HOST}
 
+spring:
+  rabbitmq:
+    password: ${RABBITMQ_PASSWORD}
+    username: ${RABBITMQ_USERNAME}
+    host: ${RABBITMQ_HOST}
+
 logging:
   level:
     org.springframework: INFO
