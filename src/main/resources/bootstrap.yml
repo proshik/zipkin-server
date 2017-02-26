@@ -1,0 +1,6 @@
+server:
+  port: ${ZIPKIN_SERVICE_HOST}
+
+logging:
+  level:
+    org.springframework: INFO
