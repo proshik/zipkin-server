@@ -18,9 +18,9 @@ after_success:
 
 # Docker
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t ZIPKIN:$COMMIT .
-  - docker tag ZIPKIN:$COMMIT ZIPKIN:$TAG
-  - docker push ZIPKIN
+  - docker build -t $ZIPKIN:$COMMIT .
+  - docker tag $ZIPKIN:$COMMIT $ZIPKIN:$TAG
+  - docker push $ZIPKIN
 
 notifications:
   email:
