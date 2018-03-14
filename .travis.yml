@@ -1,27 +1,22 @@
 sudo: required
 
-services:
-  - docker
-
 language: java
 jdk: oraclejdk8
 
-script: mvn clean install -B
+addons:
+  apt:
+    packages:
+      - docker-ce
 
-env:
-  global:
-    - COMMIT=${TRAVIS_COMMIT::8}
+script: mvn clean install -B
 
 after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - export ZIPKIN=proshik/zipkin-server
+  - export COMMIT=${TRAVIS_COMMIT::8}
 
 # Docker
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker build -t $ZIPKIN:$COMMIT .
   - docker tag $ZIPKIN:$COMMIT $ZIPKIN:$TAG
-  - docker push $ZIPKIN
-
-notifications:
-  email:
-    - proxoraleksandrovich@gmail.com
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS  
+  - docker push $ZIPKIN:$TAG
